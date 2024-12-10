@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% block title %}Portal de Gráficos{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Portal de Datos de F1</h1>
+
+    <h2>Gráfico 1: Conductores por Nacionalidad</h2>
+    <img src="data:image/png;base64,{{ graph1 }}" alt="Conductores por Nacionalidad" class="img-fluid">
+
+    <h2>Gráfico 2: Carreras por Año</h2>
+    <img src="data:image/png;base64,{{ graph2 }}" alt="Carreras por Año" class="img-fluid">
+</div>
+{% endblock %}
