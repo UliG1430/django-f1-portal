@@ -5,10 +5,10 @@ class Driver(models.Model):
     driver_id = models.CharField(max_length=50, primary_key=True)
     name = models.CharField(max_length=100)
     nationality = models.CharField(max_length=50)
-    constructor = models.CharField(max_length=50)
-
+    
     def __str__(self):
         return self.name
+
 
 class Circuit(models.Model):
     circuit_id = models.CharField(max_length=50, primary_key=True)
@@ -19,6 +19,7 @@ class Circuit(models.Model):
     def __str__(self):
         return self.name
 
+
 class Climate(models.Model):
     climate_id = models.AutoField(primary_key=True)
     condition = models.CharField(max_length=50)
@@ -28,6 +29,7 @@ class Climate(models.Model):
     def __str__(self):
         return self.condition
 
+
 class Constructor(models.Model):
     constructor_id = models.CharField(max_length=50, primary_key=True)
     name = models.CharField(max_length=100)
@@ -35,6 +37,7 @@ class Constructor(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Race(models.Model):
     race_id = models.CharField(max_length=50, primary_key=True)
@@ -44,7 +47,7 @@ class Race(models.Model):
 
     def __str__(self):
         return f"{self.season} - Round {self.round_number}"
-    
+
 ## FACT TABLES
 class RaceResult(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
@@ -56,7 +59,8 @@ class RaceResult(models.Model):
     time = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.race} - {self.driver.name}"
+        return f"Race: {self.race}, Driver: {self.driver.name}, Position: {self.position}"
+
 
 class RaceWeather(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
@@ -66,4 +70,4 @@ class RaceWeather(models.Model):
     wind_speed = models.FloatField()
 
     def __str__(self):
-        return f"{self.race} - {self.climate.condition}"
+        return f"Race: {self.race}, Condition: {self.climate.condition}"
